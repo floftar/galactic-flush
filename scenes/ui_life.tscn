@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcdg5w02cckt4"]
+
+[ext_resource type="Texture2D" uid="uid://c4gfa7byls0dh" path="res://assets/textures/playerLife1_blue.png" id="1_htia6"]
+
+[node name="UILife" type="TextureRect"]
+visible = false
+offset_right = 33.0
+offset_bottom = 26.0
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_htia6")

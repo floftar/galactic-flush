@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://be8ne57t21opo"]
+
+[ext_resource type="Texture2D" uid="uid://b2kp6an67wy6x" path="res://assets/textures/poo-angry.png" id="1_q6phx"]
+[ext_resource type="Script" path="res://scripts/angry_poo.gd" id="1_xqv2p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qn6nh"]
+radius = 16.0
+
+[node name="AngryPoo" type="Area2D"]
+scale = Vector2(0.25, 0.25)
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("1_xqv2p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_q6phx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qn6nh")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

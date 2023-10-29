@@ -1,0 +1,90 @@
+[gd_scene load_steps=16 format=3 uid="uid://brcgonxftw0f1"]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_6mdf5"]
+[ext_resource type="PackedScene" uid="uid://d34dx4xeakvpi" path="res://scenes/player.tscn" id="1_f0gos"]
+[ext_resource type="PackedScene" uid="uid://0unmoiod6faj" path="res://hud.tscn" id="2_cnuo4"]
+[ext_resource type="PackedScene" uid="uid://batkhxef7iplh" path="res://scenes/asteroid.tscn" id="3_8pyua"]
+[ext_resource type="PackedScene" uid="uid://b43tjheh0x57k" path="res://scenes/game_over_screen.tscn" id="3_j6jpb"]
+[ext_resource type="Texture2D" uid="uid://cwgxv5nikp2ky" path="res://assets/textures/background.png" id="4_7pxg1"]
+[ext_resource type="PackedScene" uid="uid://iolpmiter7lh" path="res://scenes/player_spawn_area.tscn" id="6_2uc0o"]
+[ext_resource type="AudioStream" uid="uid://pdi0wcir51pu" path="res://assets/audio/sfx_laser1.wav" id="7_afbo4"]
+[ext_resource type="AudioStream" uid="uid://byfigy7hqpo3d" path="res://assets/audio/split.wav" id="9_tbp4d"]
+[ext_resource type="AudioStream" uid="uid://dkco242xtb2ga" path="res://assets/audio/explode.wav" id="9_w8jat"]
+[ext_resource type="AudioStream" uid="uid://d4jkba0lyh550" path="res://assets/audio/fart.wav" id="11_2yhbk"]
+[ext_resource type="AudioStream" uid="uid://dl57wr2pmh8i4" path="res://assets/audio/fart2.wav" id="12_kjiia"]
+[ext_resource type="PackedScene" uid="uid://pyu41s2xcs7o" path="res://scenes/toilet.tscn" id="12_m6xxf"]
+[ext_resource type="AudioStream" uid="uid://dkheixftt2wgt" path="res://assets/audio/impact.ogg" id="13_yw6du"]
+[ext_resource type="AudioStream" uid="uid://bdy1w2mphq3kn" path="res://assets/audio/flipout.wav" id="14_xgom5"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_6mdf5")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="UI" instance=ExtResource("2_cnuo4")]
+
+[node name="GameOverScreen" parent="UI" instance=ExtResource("3_j6jpb")]
+visible = false
+
+[node name="Background" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_right = 1279.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_7pxg1")
+
+[node name="Player" parent="." instance=ExtResource("1_f0gos")]
+position = Vector2(640, 360)
+
+[node name="Lasers" type="Node" parent="."]
+
+[node name="Asteroids" type="Node" parent="."]
+
+[node name="Asteroid" parent="Asteroids" instance=ExtResource("3_8pyua")]
+position = Vector2(296, 188)
+
+[node name="Asteroid2" parent="Asteroids" instance=ExtResource("3_8pyua")]
+position = Vector2(1030, 490)
+
+[node name="Asteroid3" parent="Asteroids" instance=ExtResource("3_8pyua")]
+position = Vector2(517, 602)
+
+[node name="PlayerSpawnPos" type="Node2D" parent="."]
+position = Vector2(640, 360)
+
+[node name="PlayerSpawnArea" parent="PlayerSpawnPos" instance=ExtResource("6_2uc0o")]
+
+[node name="Toilet" parent="." instance=ExtResource("12_m6xxf")]
+position = Vector2(111, 611)
+scale = Vector2(0.2, 0.2)
+collision_layer = 4
+collision_mask = 11
+
+[node name="LaserSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_afbo4")
+
+[node name="AsteroidHitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_tbp4d")
+
+[node name="AsteroidDestroySound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_2yhbk")
+
+[node name="RestartSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_kjiia")
+
+[node name="PlayerDieSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_w8jat")
+
+[node name="ToiletHitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_yw6du")
+
+[node name="AngryPooHitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_xgom5")
